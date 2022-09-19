@@ -1,7 +1,52 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import styled, { css } from 'styled-components'
 import styles from '../styles/Home.module.css'
+
+type ButtonProps = {
+  color: string
+  backgroundColor: string
+}
+
+const H1 = styled.h1 `
+  color: red;
+`
+
+const Badge = styled.span `
+  padding: 8px 16px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background: red;
+  border-radius: 16px;
+`
+
+const font = css`
+  color: #1e90ff;
+  font-size: 2em;
+`
+
+const Text = styled.p `
+  color: blue;
+  font-weight: bold;
+`
+const BorderedText = styled(Text)`
+  padding: 8px 16px;
+  border: 3px solid blue;
+  border-radius: 8px;
+`
+const Button = styled.button<ButtonProps>`
+  color: ${(props) => props.color};
+  background: ${(props) => props.backgroundColor};
+  border: 2px solid ${(props) => props.color};
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 8px;
+  cursor: pointer;
+
+  ${font}
+`
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +58,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <H1>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        </H1>
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -65,6 +110,25 @@ const Home: NextPage = () => {
           </span>
         </a>
       </footer>
+
+      <Badge>
+        Hello world!
+      </Badge>
+      <Button color="white" backgroundColor="red">
+        文字が入ってないじゃん！
+      </Button>
+
+      <Text>
+        テキストクラスだよ
+      </Text>
+
+      <Text as="a" href="/">
+        Go to index
+      </Text>
+
+      <BorderedText>
+        ボーダーテキストクラスだよ
+      </BorderedText>
     </div>
   )
 }
